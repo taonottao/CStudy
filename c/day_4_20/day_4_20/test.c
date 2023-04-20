@@ -94,19 +94,19 @@
 //    return 0;
 //}
 
-//int main() {
-//    char x = 0;
-//    while ((x = getchar()) != EOF) {
-//        if ((x >= 'A' && x <= 'Z') || (x >= 'a' && x <= 'z')) {
-//            printf("%c is an alphabet.\n", x);
-//        }
-//        else
-//        {
-//            printf("%c is not an alphabet.\n", x);
-//        }
-//        getchar();
-//
-//    }
-//
-//    return 0;
-//}
+int main() {
+    char x = 0;
+    while ((x = getchar()) != EOF) {
+        if ((x >= 'A' && x <= 'Z') || (x >= 'a' && x <= 'z')) {
+            printf("%c is an alphabet.\n", x);
+        }
+        else
+        {
+            printf("%c is not an alphabet.\n", x);
+        }
+        getchar();
+
+    }
+
+    return 0;
+}
