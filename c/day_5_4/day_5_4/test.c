@@ -14,7 +14,7 @@
 //
 //int main()
 //{
-//	int ret = DigitSum(172);
+//	int ret = DigitSum(1709);
 //	printf("%d\n", ret);
 //
 //	return 0;
@@ -33,10 +33,9 @@
 //int len = 0;
 //int MyStrlen2(char* ch)
 //{	
-//	while (*ch != '\0')
+//	if(*ch != '\0')
 //	{
 //		len = 1 + MyStrlen2(ch + 1);
-//		break;
 //	}
 //
 //	return len;
@@ -77,10 +76,9 @@
 //		return 1;
 //
 //	int ret = 1;
-//	while (n > 0)
+//	if(n > 0)
 //	{
 //		ret = n * func2(n - 1);
-//		break;
 //	}
 //	return  ret;
 //}
@@ -102,12 +100,15 @@
 void print(int n)
 {	
 	int ret = 0;
-	while (n > 0)
+	if (n >9)
 	{
 		ret = n % 10;
 		print(n / 10);
 		printf("%d ", ret);
-		break;
+	}
+	else
+	{
+		printf("%d ", n % 10);
 	}
 
 }

@@ -59,21 +59,31 @@
 //}
 
 
-int Fun(int n, int k)
+//int Fun(int n, int k)
+//{
+//	int i = 0;
+//	int ret = 1;
+//	for (i = 0; i < k; i++)
+//	{
+//		ret *= n;
+//	}
+//	return ret;
+//}
+
+double Fun(int n, int k)
 {
-	int i = 0;
-	int ret = 1;
-	for (i = 0; i < k; i++)
-	{
-		ret *= n;
-	}
-	return ret;
+		if (k == 0)
+			return 1;
+		else if (k > 0)
+			return n * Fun(n, k - 1);
+		else
+			return 1.0 / Fun(n, -k);
 }
 
 int main()
 {
-	int ret = Fun(2, 10);
-	printf("%d\n", ret);
+	double ret = Fun(2, -1);
+	printf("%lf\n", ret);
 
 	return 0;
 }
