@@ -8,10 +8,44 @@ void game()
 	char board[ROW][COL];
 	initBoard(board, ROW, COL);
 	boardDisplay(board, ROW, COL);
-	playerMove(board, ROW, COL);
-	boardDisplay(board, ROW, COL);
-	computerMove(board, ROW, COL);
-	boardDisplay(board, ROW, COL);
+
+	char ret = 0;
+
+	while (1)
+	{
+		playerMove(board, ROW, COL);
+		boardDisplay(board, ROW, COL);
+
+		ret = isWin(board, ROW, COL);
+
+		if (ret == '*')
+		{
+			printf("玩家胜利\n");
+			break;
+		}
+		else if (ret == 'Q')
+		{
+			printf("平局\n");
+			break;
+		}
+
+		computerMove(board, ROW, COL);
+		boardDisplay(board, ROW, COL);
+
+		ret = isWin(board, ROW, COL);
+
+		if (ret == '#')
+		{
+			printf("电脑胜利\n");
+			break;
+		}
+		//因为玩家先手,所以最后一颗子由玩家落下
+		/*else if (ret == 'Q')
+		{
+			printf("平局 ");
+			break;
+		}*/
+	}
 }
 
 void initBoard(char board[ROW][COL], int row, int col)
@@ -79,5 +113,68 @@ void playerMove(char board[ROW][COL], int row, int col)
 			printf("输入的坐标超出边界,请重新输入!!!\n");
 		}
 	}
+}
+
+void computerMove(char board[ROW][COL], int row, int col)
+{
+	int x = 0;
+	int y = 0;
+	while (1)
+	{
+		x = rand() % row;
+		y = rand() % col;
+		if (board[x][y] == ' ')
+		{
+			board[x][y] = '#';
+			break;
+		}
+	}
+}
+
+//判断棋盘是否已下满
+int isFull(char board[ROW][COL], int row, int col)
+{
+	int i = 0;
+	for (i = 0; i < row; i++)
+	{
+		int j = 0;
+		for (j = 0; j < col; j++)
+		{
+			if (board[i][j] == ' ')
+				return 1;
+		}
+	}
+	return 0;
+}
+
+char isWin(char board[ROW][COL], int row, int col)
+{
+	int i = 0;
+	int j = 0;
+	int ret = isFull(board, row, col);
 	
+	for (i = 0; i < row; i++)
+	{
+		//行相等
+		if (board[i][0] == board[i][1] && board[i][1] == board[i][2])
+			return board[i][0];
+	}
+
+	for (j = 0; j < col; j++)
+	{
+		//列相等
+		if (board[0][j] == board[1][j] && board[1][j] == board[2][j])
+			return board[0][j];
+	}
+
+	//对角线相等
+	if (board[0][0] == board[1][1] && board[1][1] == board[2][2])
+		return board[1][1];
+	else if (board[0][2] == board[1][1] && board[1][1] == board[2][0])
+		return board[1][1];
+
+	//平局
+	if (!ret)
+		return 'Q';
+	return 'C';
 }
