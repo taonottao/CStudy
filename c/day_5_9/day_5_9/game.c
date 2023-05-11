@@ -5,8 +5,11 @@
 //游戏内容
 void game()
 {
+	//棋盘
 	char board[ROW][COL];
+	//初始化I棋盘
 	initBoard(board, ROW, COL);
+	//打印棋盘
 	boardDisplay(board, ROW, COL);
 
 	char ret = 0;
