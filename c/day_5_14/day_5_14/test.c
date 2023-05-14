@@ -65,20 +65,88 @@
 //	return 0;
 //}
 
+//int main() {
+//    int a = 0;
+//    int b = 0;
+//    scanf("%d %d", &a, &b);
+//    int count = 0;
+//    int n = a ^ b;
+//    int i = 0;
+//    for (i = 0; i < 32; i++)
+//    {
+//        if ((n >> i) & 1 == 1)
+//        {
+//            count++;
+//        }
+//    }
+//    printf("%d\n", count);
+//    return 0;
+//}
+
+
+//int i;
+//int main()
+//{
+//    i--;
+//    if (i > sizeof(i))
+//    {
+//        printf(">\n");
+//    }
+//    else
+//    {
+//        printf("<\n");
+//    }
+//    return 0;
+//}
+
 int main() {
-    int a = 0;
-    int b = 0;
-    scanf("%d %d", &a, &b);
-    int count = 0;
-    int n = a ^ b;
+    int n = 0;
+    int m = 0;
+    scanf("%d %d\n", &n, &m);
+    int arr1[1000] = { 0 };
+    int arr2[1000] = { 0 };
+    int arr3[2000] = { 0 };
     int i = 0;
-    for (i = 0; i < 32; i++)
+    for (i = 0; i < n; i++)
     {
-        if ((n >> i) & 1 == 1)
+        scanf("%d", &arr1[i]);
+    }
+    for (i = 0; i < m; i++)
+    {
+        scanf("%d", &arr2[i]);
+    }
+    int j = 0;
+    int s = 0;
+    while (i < n && j < m)
+    {
+        if (arr1[i] < arr2[j])
         {
-            count++;
+            arr3[s++] = arr1[i];
+            i++;
+        }
+        else
+        {
+            arr3[s++] = arr2[j];
+            j++;
         }
     }
-    printf("%d\n", count);
+    if (i < n)
+    {
+        for (; i < n; i++)
+        {
+            arr3[s++] = arr1[i];
+        }
+    }
+    else if (j < m)
+    {
+        for (; j < m; j++)
+        {
+            arr3[s++] = arr2[j];
+        }
+    }
+    for (i = 0; i < m + n; i++)
+    {
+        printf("%d ", arr3[i]);
+    }
     return 0;
 }
